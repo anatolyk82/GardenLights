@@ -167,3 +167,42 @@ void LightDevice::efChaos()
   }
   FastLED.delay(20);
 }
+
+void LightDevice::efRandomColorLamp()
+{
+  fill_solid( m_leds, m_num_leds, CHSV( ef_hue, 255, m_brightness) );
+
+  if (ef_lampIndex >= 0) {
+    m_leds[ef_lampIndex] = CHSV( ef_lampHue, 255, m_brightness);
+  }
+  ef_lampHue += 1;
+
+  if ( ef_lampHue == ef_hue ) {
+    if (random(0,2) == 0) {
+      ef_lampIndex = random(0, m_num_leds);
+    } else {
+      ef_lampIndex = -1;
+    }
+    ef_hue += 1;
+    ef_lampHue += 1;
+  }
+
+  FastLED.delay(50);
+}
+
+
+void LightDevice::efFluctuation()
+{
+  fill_solid( m_leds, m_num_leds, CHSV( ef_hue, ef_sat, m_brightness) );
+
+  ef_sat = ef_goesUp ? ef_sat + 1 : ef_sat - 1;
+
+  if (ef_sat == 0) {
+    ef_hue += 5;
+    ef_goesUp = true;
+  } else if (ef_sat == 255) {
+    ef_goesUp = false;
+  }
+
+  FastLED.delay(100);
+}

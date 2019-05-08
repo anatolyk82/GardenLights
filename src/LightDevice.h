@@ -45,6 +45,8 @@ public:
   void efSparkles();
   void efColorLoop();
   void efChaos();
+  void efRandomColorLamp();
+  void efFluctuation();
 
   /* Getters */
   bool state() const { return m_state; }
@@ -79,13 +81,20 @@ private:
   void setColor() const;
 
   /* Effects */
+  bool ef_goesUp = true;
+  uint8_t ef_sat = 0;
   uint8_t ef_hue = 0;
   ChaosEffectHelper *m_chaosEffectHelper = nullptr;
 
+  int16_t ef_lampIndex = -1;
+  uint8_t ef_lampHue = 0;
+
   std::map< std::string, std::function<void(void)> > m_lightEffectsList = {
-    {"Sparkles",       std::bind(&LightDevice::efSparkles, this)},
-    {"Colorloop",      std::bind(&LightDevice::efColorLoop, this)},
-    {"Chaos",          std::bind(&LightDevice::efChaos, this)},
+    {"Sparkles",        std::bind(&LightDevice::efSparkles, this)},
+    {"Colorloop",       std::bind(&LightDevice::efColorLoop, this)},
+    {"Chaos",           std::bind(&LightDevice::efChaos, this)},
+    {"RandomColorLamp", std::bind(&LightDevice::efRandomColorLamp, this)},
+    {"Fluctuation",     std::bind(&LightDevice::efFluctuation, this)},
   };
 
   /* Properties */

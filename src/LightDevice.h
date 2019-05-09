@@ -1,6 +1,7 @@
 #ifndef ESP_LIGHT_DEVICE_CONTROL_H
 #define ESP_LIGHT_DEVICE_CONTROL_H
 
+//#define FASTLED_INTERRUPT_RETRY_COUNT 1
 #define FASTLED_ALLOW_INTERRUPTS 0 //Avoid flickering ?
 #include <FastLED.h>
 

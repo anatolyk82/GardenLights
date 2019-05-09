@@ -28,7 +28,7 @@
 
 // Enable DS18B20 temperature sensor to measure
 // the temperature inside the power supply.
-#define ENABLE_TEMPERATURE_SENSOR 0
+#define ENABLE_TEMPERATURE_SENSOR 1
 
 /* WiFi Manager settings */
 #define WIFI_AP_NAME "GardenLights"

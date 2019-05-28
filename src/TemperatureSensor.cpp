@@ -22,11 +22,11 @@ float TemperatureSensor::requestTemperatureC()
 {
   m_sensor->requestTemperatures();
   float tempC = m_sensor->getTempC(insideThermometer);
-  if(tempC == DEVICE_DISCONNECTED_C)
-  {
-    tempC = -100.0;
+  m_isTemperatureCorrect = (tempC != DEVICE_DISCONNECTED_C);
+  if (m_isTemperatureCorrect) {
+    m_tempC = tempC;
   }
-  return tempC;
+  return m_tempC;
 }
 
 float TemperatureSensor::requestTemperatureF()

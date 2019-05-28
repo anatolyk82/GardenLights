@@ -193,7 +193,9 @@ void DeviceMqttClient::publishDeviceState() {
 
   #if (ENABLE_TEMPERATURE_SENSOR == 1)
     float t = m_tempSensor->requestTemperatureC();
-    root["temperature"] = t;
+    if (m_tempSensor->isTemperatureCorrect()) {
+      root["temperature"] = t;
+    }
   #endif
 
     char buffer[root.measureLength() + 1];
